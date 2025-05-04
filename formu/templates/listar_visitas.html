@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Visitas</title>
-    <link rel="stylesheet" href="/static/css/estilos.css">
-    <style>
-        table {
-            width: 90%;
-            margin: auto;
-            border-collapse: collapse;
-            margin-top: 30px;
-        }
+{% extends "base.html" %}
 
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
+{% block title %}Lista de Visitas{% endblock %}
 
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #28a745;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        a:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
     <h1>Listado de Visitas Registradas</h1>
 
     <table>
@@ -80,6 +40,4 @@
     <div style="text-align: center;">
         <a href="/">Registrar nueva visita</a>
     </div>
-</body>
-</html>
-
+{% endblock %}

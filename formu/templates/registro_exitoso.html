@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}¡Registro exitoso!{% endblock %}
+
+{% block content %}
+    <h1>Propietario registrado exitosamente</h1>
+
+    <p><strong>Nombre:</strong> {{ nombre }}</p>
+    <p><strong>DNI:</strong> {{ dni }}</p>
+    <p><strong>Unidad funcional:</strong> {{ unidad_funcional }}</p>
+    <p><strong>Teléfono:</strong> {{ telefono }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+
+    <a href="{{ url_for('nuevo_propietario') }}">Registrar otro propietario</a> |
+    <a href="{{ url_for('menu_principal') }}">Volver al inicio</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto de Emergencia{% endblock %}
+
+{% block content %}
+    <h1>Registrar Contacto de Emergencia</h1>
+    <form method="POST">
+        <label>ID Propietario:</label>
+        <input type="number" name="id_propietario" required><br>
+
+        <label>Nombre contacto:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label>Teléfono contacto:</label>
+        <input type="text" name="telefono" required><br>
+
+        <label>Relación:</label>
+        <input type="text" name="relacion" required><br>
+
+        <button type="submit">Registrar</button>
+    </form>
+{% endblock %}

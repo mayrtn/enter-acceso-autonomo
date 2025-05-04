@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Accesos{% endblock %}
+
+{% block content %}
+    <h1>Accesos Registrados</h1>
+
+    <table>
+        <tr>
+            <th>ID Usuario</th>
+            <th>Tipo Usuario</th>
+            <th>Evento</th>
+            <th>Fecha y Hora</th>
+        </tr>
+        {% for acceso in accesos %}
+        <tr>
+            <td>{{ acceso[1] }}</td>
+            <td>{{ acceso[2] }}</td>
+            <td>{{ acceso[3] }}</td>
+            <td>{{ acceso[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/">Volver al inicio</a></p>
+
+{% endblock %}
+

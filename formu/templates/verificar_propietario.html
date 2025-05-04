@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Verificar Propietario{% endblock %}
+
+{% block content %}
+    <h1>Verificá los datos antes de confirmar</h1>
+    <ul>
+        <li><strong>Nombre:</strong> {{ datos.nombre }}</li>
+        <li><strong>DNI:</strong> {{ datos.dni }}</li>
+        <li><strong>Unidad funcional:</strong> {{ datos.unidad_funcional }}</li>
+        <li><strong>Teléfono:</strong> {{ datos.telefono }}</li>
+        <li><strong>Email:</strong> {{ datos.email }}</li>
+    </ul>
+
+    <form method="POST" action="{{ url_for('confirmar_registro_propietario') }}">
+        {% for clave, valor in datos.items() %}
+            <input type="hidden" name="{{ clave }}" value="{{ valor }}">
+        {% endfor %}
+        <button type="submit">Confirmar y Registrar</button>
+    </form>
+
+    <form method="GET" action="{{ url_for('nuevo_propietario') }}">
+        {% for clave, valor in datos.items() %}
+            <input type="hidden" name="{{ clave }}" value="{{ valor }}">
+        {% endfor %}
+        <button type="submit">Volver y Corregir</button>
+    </form>
+{% endblock %}

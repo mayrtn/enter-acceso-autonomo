@@ -1,49 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Confirmación</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            text-align: center;
-            padding-top: 100px;
-        }
+{% extends "base.html" %}
 
-        .mensaje {
-            background: white;
-            display: inline-block;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
+{% block title %}¡Visita Registrada!{% endblock %}
 
-        h1 {
-            color: #28a745;
-            margin-bottom: 20px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        a:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
     <div class="mensaje">
         <h1>✅ ¡Visita registrada con éxito!</h1>
         <p>Los datos fueron guardados correctamente en el sistema.</p>
         <a href="/">Registrar otra visita</a>
     </div>
-</body>
-</html>
+{% endblock %}

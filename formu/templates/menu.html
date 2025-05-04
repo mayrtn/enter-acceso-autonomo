@@ -1,43 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Menú Principal</title>
-    <link rel="stylesheet" href="/static/css/estilos.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            text-align: center;
-            padding-top: 100px;
-        }
+{% extends "base.html" %}
 
-        h1 {
-            margin-bottom: 40px;
-        }
+{% block title %}Menu Principal{% endblock %}
 
-        .opciones a {
-            display: block;
-            margin: 20px auto;
-            width: 250px;
-            padding: 15px;
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            border-radius: 8px;
-            font-size: 18px;
-        }
-
-        .opciones a:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <h1>Menú Principal</h1>
-    <div class="opciones">
-        <a href="/formulario">Registrar nueva visita</a>
-        <a href="/listar_visitas">Ver visitas registradas</a>
+{% block content %}
+    <h1>Panel Principal de Gestión</h1>
+    <div class="menu">
+        <a class="menu-item" href="{{ url_for('nuevo_propietario') }}">
+            <i class="fas fa-user"></i>
+            Registrar Propietario
+        </a>
+        <a class="menu-item" href="{{ url_for('nuevo_vehiculo') }}">
+            <i class="fas fa-car"></i>
+            Registrar Vehículo
+        </a>
+        <a class="menu-item" href="{{ url_for('nueva_emergencia') }}">
+            <i class="fas fa-triangle-exclamation"></i>
+            Contacto de Emergencia
+        </a>
+        <a class="menu-item" href="{{ url_for('mostrar_formulario_acceso') }}">
+            <i class="fas fa-qrcode"></i>
+            Registrar Acceso QR
+        </a>
+        <a class="menu-item" href="{{ url_for('listar_accesos_qr') }}">
+            <i class="fas fa-clock-rotate-left"></i>
+            Ver Accesos QR
+        </a>
+        <a class="menu-item" href="{{ url_for('menu_visitas') }}">
+            <i class="fas fa-users"></i>
+            Gestión de Visitas
+        </a>
     </div>
-</body>
-</html>
+{% endblock %}

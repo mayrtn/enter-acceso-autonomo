@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi Sistema{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='javascript/funciones.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Acceso</h1>
+        <nav>
+            <ul>
+                <li><a href="/"><i class="fa fa-home"></i> Inicio</a></li>
+                <li><a href="/generar_qr"><i class="fa fa-qrcode"></i> Generar QR</a></li>
+                <li><a href="/escanear_qr"><i class="fa fa-camera"></i> Escanear QR</a></li>
+                <li><a href="/listar_accesos"><i class="fa fa-list"></i> Ver Accesos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

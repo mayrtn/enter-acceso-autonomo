@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Ingreso de Visita</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Formulario de Ingreso{% endblock %}
+
+{% block content %}
     <h1>Formulario de Ingreso - Barrio Cerrado</h1>
 
     <form action="/registrar_visita" method="POST">
@@ -69,8 +66,4 @@
 
         <button type="submit">Registrar Ingreso</button>
     </form>
-
-    <script src="{{ url_for('static', filename='javascript/funciones.js') }}" defer></script>
-
-</body>
-</html>
+{% endblock %}

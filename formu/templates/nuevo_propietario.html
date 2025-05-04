@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Nuevo Propietario{% endblock %}
+
+{% block content %}
+    <h1>Registrar Nuevo Propietario</h1>
+    <form method="POST" action="/verificar_propietario">
+        <label>Nombre completo:</label>
+        <input type="text" name="nombre" value="{{ datos.nombre if datos else '' }}" required><br>
+
+        <label>DNI:</label>
+        <input type="text" name="dni" value="{{ datos.dni if datos else '' }}" required><br>
+
+        <label>Unidad funcional (lote):</label>
+        <input type="text" name="unidad_funcional" value="{{ datos.unidad_funcional if datos else '' }}" required><br>
+
+        <label>Teléfono:</label>
+        <input type="text" name="telefono" value="{{ datos.telefono if datos else '' }}" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ datos.email if datos else '' }}" required><br>
+
+        <button type="submit">Registrar</button>
+    </form>
+{% endblock %}

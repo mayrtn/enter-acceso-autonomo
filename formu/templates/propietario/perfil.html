@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Mi Perfil</h2>
+
+    <h4>Datos personales</h4>
+    <ul class="list-group mb-4">
+        <li class="list-group-item"><strong>Nombre:</strong> {{ usuario.nombre }} {{ usuario.apellido }}</li>
+        <li class="list-group-item"><strong>DNI:</strong> {{ usuario.dni }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ usuario.email }}</li>
+        <li class="list-group-item"><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
+        <li class="list-group-item"><strong>Dirección:</strong> {{ usuario.direccion }}</li>
+        <li class="list-group-item"><strong>Unidad funcional:</strong> {{ usuario.unidad_funcional }}</li>
+    </ul>
+
+    <h4>Seguridad</h4>
+    <form method="POST" action="{{ url_for('propietario.actualizar_seguridad') }}">
+        <div class="mb-3">
+            <label for="nueva_contraseña" class="form-label">Nueva contraseña</label>
+            <input type="password" name="nueva_contraseña" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="pin_acceso" class="form-label">PIN de acceso</label>
+            <input type="text" name="pin_acceso" class="form-control" value="{{ usuario.pin_acceso }}">
+        </div>
+        <div class="mb-3">
+            <label for="pin_seguridad" class="form-label">PIN de emergencia</label>
+            <input type="text" name="pin_seguridad" class="form-control" value="{{ usuario.pin_seguridad }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+
+    <hr>
+    <h4>Vehículos</h4>
+    {% if vehiculos %}
+        <ul class="list-group mb-3">
+            {% for v in vehiculos %}
+                <li class="list-group-item">
+                    <strong>Marca:</strong> {{ v.marca }} |
+                    <strong>Modelo:</strong> {{ v.modelo }} |
+                    <strong>Color:</strong> {{ v.color }} |
+                    <strong>Patente:</strong> {{ v.patente }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tenés vehículos registrados.</p>
+    {% endif %}
+
+    <a href="{{ url_for('propietario.nuevo_vehiculo') }}" class="btn btn-success">Agregar nuevo vehículo</a>
+
+</div>
+{% endblock %}

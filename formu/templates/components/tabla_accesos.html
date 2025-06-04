@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID Usuario</th>
+            {% if incluir_tipo %}
+            <th>Tipo Usuario</th>
+            {% endif %}
+            <th>Evento</th>
+            <th>Fecha y Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for acceso in accesos %}
+        <tr>
+            <td>{{ acceso[1] }}</td>
+            {% if incluir_tipo %}
+            <td>{{ acceso[2] }}</td>
+            {% endif %}
+            <td>{{ acceso[3] }}</td>
+            <td>{{ acceso[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

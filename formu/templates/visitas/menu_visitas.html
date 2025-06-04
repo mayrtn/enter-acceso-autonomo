@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Menu de Visitas{% endblock %}
+
+{% block content %}
+    <h1>Menú Principal</h1>
+    <div class="opciones">
+        <a href="{{ url_for('visitas.formulario_visita') }}">Registrar nueva visita</a>
+        <a href="{{ url_for('visitas.listar_visitas') }}">Ver visitas registradas</a>
+        
+    </div>
+{% endblock %}

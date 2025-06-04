@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de Seguridad</title>
+</head>
+<body>
+    <h2>Visitas</h2>
+    <table border="1">
+        <tr>
+            <th>Nombre</th><th>DNI</th><th>Propietario</th>
+            <th>Fecha</th><th>Estado</th>
+            <th>Ingreso</th><th>Egreso</th><th>Acciones</th>
+        </tr>
+        {% for v in visitas %}
+        <tr>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[7] }}</td>
+            <td>{{ v[3] }}</td>
+            <td>{{ v[4] }}</td>
+            <td>{{ v[5] or '-' }}</td>
+            <td>{{ v[6] or '-' }}</td>
+            <td>
+                {% if v[4] == 'pendiente' %}
+                    <a href="{{ url_for('seguridad.registrar_ingreso') }}">Registrar ingreso</a>
+                {% elif v[4] == 'ingresado' %}
+                    <a href="{{ url_for('seguridad.registrar_egreso') }}">Registrar egreso</a>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

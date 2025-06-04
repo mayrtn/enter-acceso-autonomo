@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar Vehículo{% endblock %}
+
+{% block content %}
+
+    
+    <h1>Registrar Nuevo Vehículo</h1>
+    <form method="POST">
+        <label>ID Propietario:</label>
+        <input type="number" name="id_propietario" required><br>
+
+        <label>Marca:</label>
+        <select id="marca" name="marca" onchange="actualizarModelos()">
+            <option value="">-- Seleccionar --</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Ford">Ford</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Honda">Honda</option>
+        </select>
+
+        <label>Modelo:</label>
+        <select id="modelo" name="modelo">
+            <option value="">-- Seleccionar --</option>
+        </select>
+
+        <label>Color:</label>
+        <select name="color">
+            <option value="">-- Seleccionar --</option>
+            <option value="Blanco">Blanco</option>
+            <option value="Negro">Negro</option>
+            <option value="Gris">Gris</option>
+            <option value="Rojo">Rojo</option>
+            <option value="Azul">Azul</option>
+        </select>
+
+        <label>Patente:</label>
+        <input type="text" name="patente" required><br>
+
+        <button type="submit">Registrar Vehículo</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Menu Principal{% endblock %}
+
+{% block content %}
+    <h1>Panel Principal de Gestión</h1>
+    <div class="menu">
+        <a class="menu-item" href="{{ url_for('nuevo_propietario') }}">
+            <i class="fas fa-user"></i>
+            Registrar Propietario
+        </a>
+        <a class="menu-item" href="{{ url_for('nuevo_vehiculo') }}">
+            <i class="fas fa-car"></i>
+            Registrar Vehículo
+        </a>
+        <a class="menu-item" href="{{ url_for('nueva_emergencia') }}">
+            <i class="fas fa-triangle-exclamation"></i>
+            Contacto de Emergencia
+        </a>
+        <a class="menu-item" href="{{ url_for('registro_qr') }}">
+            <i class="fas fa-qrcode"></i>
+            Registrar Acceso QR
+        </a>
+        <a class="menu-item" href="{{ url_for('listar_accesos_qr') }}">
+            <i class="fas fa-clock-rotate-left"></i>
+            Ver Accesos QR
+        </a>
+        <a class="menu-item" href="{{ url_for('menu_visitas') }}">
+            <i class="fas fa-users"></i>
+            Gestión de Visitas
+        </a>
+    </div>
+{% endblock %}

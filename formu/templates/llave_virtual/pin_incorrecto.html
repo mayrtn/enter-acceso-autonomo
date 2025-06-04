@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PIN Incorrecto</title>
+</head>
+<body>
+    <h2>PIN incorrecto, {{ nombre }}</h2>
+    <p>Llevás {{ intentos }} intento(s) fallido(s). A los 3 se bloqueará tu acceso.</p>
+    <a href="/llave-virtual?id_usuario={{ request.args.get('id_usuario') }}">Volver a intentar</a>
+</body>
+</html>

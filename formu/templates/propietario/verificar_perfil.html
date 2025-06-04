@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Confirmar Cambios{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Confirmar Cambios</h2>
+    <form method="POST" action="{{ url_for('propietario.guardar_perfil') }}">
+        <h4>Datos Personales</h4>
+        <p><strong>Dirección:</strong> {{ datos.direccion }}</p>
+        <input type="hidden" name="direccion" value="{{ datos.direccion }}">
+        <p><strong>Teléfono:</strong> {{ datos.telefono }}</p>
+        <input type="hidden" name="telefono" value="{{ datos.telefono }}">
+        <p><strong>Patente:</strong> {{ datos.patente }}</p>
+        <input type="hidden" name="patente" value="{{ datos.patente }}">
+
+        <hr>
+        <h4>Seguridad</h4>
+        <p><strong>Nueva contraseña:</strong> {% if datos.nueva_contraseña %}••••••••{% else %}(sin cambios){% endif %}</p>
+        <input type="hidden" name="nueva_contraseña" value="{{ datos.nueva_contraseña }}">
+        <p><strong>PIN de acceso:</strong> {% if datos.pin_acceso %}••••{% else %}(sin cambios){% endif %}</p>
+        <input type="hidden" name="pin_acceso" value="{{ datos.pin_acceso }}">
+        <p><strong>PIN de emergencia:</strong> {% if datos.pin_seguridad %}••••{% else %}(sin cambios){% endif %}</p>
+        <input type="hidden" name="pin_seguridad" value="{{ datos.pin_seguridad }}">
+
+        {% if datos.convivientes %}
+        <hr>
+        <h4>Convivientes</h4>
+        {% for c in datos.convivientes %}
+            <div class="mb-3">
+                <p><strong>Nombre:</strong> {{ c.nombre }}</p>
+                <input type="hidden" name="convivientes_nombres[]" value="{{ c.nombre }}">
+                <p><strong>Apellido:</strong> {{ c.apellido }}</p>
+                <input type="hidden" name="convivientes_apellidos[]" value="{{ c.apellido }}">
+                <p><strong>Edad:</strong> {{ c.edad }}</p>
+                <input type="hidden" name="convivientes_edades[]" value="{{ c.edad }}">
+                <p><strong>Relación:</strong> {{ c.relacion }}</p>
+                <input type="hidden" name="convivientes_relaciones[]" value="{{ c.relacion }}">
+                <hr>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if datos.vehiculos %}
+        <hr>
+        <h4>Vehículos</h4>
+        {% for v in datos.vehiculos %}
+            <div class="mb-3">
+                <p><strong>Marca:</strong> {{ v.marca }}</p>
+                <input type="hidden" name="vehiculos_marcas[]" value="{{ v.marca }}">
+                <p><strong>Modelo:</strong> {{ v.modelo }}</p>
+                <input type="hidden" name="vehiculos_modelos[]" value="{{ v.modelo }}">
+                <p><strong>Color:</strong> {{ v.color }}</p>
+                <input type="hidden" name="vehiculos_colores[]" value="{{ v.color }}">
+                <p><strong>Patente:</strong> {{ v.patente }}</p>
+                <input type="hidden" name="vehiculos_patentes[]" value="{{ v.patente }}">
+                <hr>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">Confirmar Cambios</button>
+            <a href="{{ url_for('propietario.perfil') }}" class="btn btn-secondary">Volver atrás</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

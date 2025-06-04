@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Formulario de Ingreso{% endblock %}
+
+{% block content %}
+    <h1>Formulario de Ingreso - Barrio Cerrado</h1>
+
+    <form action="{{ url_for('visitas.formulario_visita') }}" method="POST">
+        <fieldset>
+            <legend>Datos del visitante</legend>
+
+            <label>Nombre completo:</label>
+            <input type="text" name="nombre" required>
+
+            <label>DNI:</label>
+            <input type="text" name="dni" required>
+
+            <label>Motivo de la visita:</label>
+            <input type="text" name="motivo" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos del vehículo (si aplica)</legend>
+
+            <label>Marca:</label>
+            <select id="marca" name="marca" onchange="actualizarModelos()">
+                <option value="">-- Seleccionar --</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Ford">Ford</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Honda">Honda</option>
+            </select>
+
+            <label>Modelo:</label>
+            <select id="modelo" name="modelo">
+                <option value="">-- Seleccionar --</option>
+            </select>
+
+            <label>Color:</label>
+            <select name="color">
+                <option value="">-- Seleccionar --</option>
+                <option value="Blanco">Blanco</option>
+                <option value="Negro">Negro</option>
+                <option value="Gris">Gris</option>
+                <option value="Rojo">Rojo</option>
+                <option value="Azul">Azul</option>
+            </select>
+
+            <label>Patente:</label>
+            <input type="text" name="patente">
+        </fieldset>
+
+        <fieldset>
+            <legend>Información adicional</legend>
+
+            <label>Fecha de ingreso:</label>
+            <input type="date" name="fecha_ingreso" required>
+
+            <label>Hora estimada de entrada:</label>
+            <input type="time" name="hora_ingreso">
+
+            <label>Hora estimada de salida:</label>
+            <input type="time" name="hora_salida">
+        </fieldset>
+
+        <button type="submit">Registrar Ingreso</button>
+    </form>
+{% endblock %}

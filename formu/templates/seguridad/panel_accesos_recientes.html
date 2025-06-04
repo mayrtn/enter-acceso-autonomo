@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Panel de Accesos Recientes{% endblock %}
+
+{% block content %}
+<h1>Panel de Accesos Recientes</h1>
+
+<table id="tabla-accesos" border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo de Usuario</th>
+            <th>Evento</th>
+            <th>Fecha y Hora</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpo-accesos">
+        <!-- Se rellena por JavaScript -->
+    </tbody>
+</table>
+
+<script>
+async function cargarAccesos() {
+    try {
+        const response = await fetch("/api/accesos_recientes");
+        const accesos = await response.json();
+        const cuerpoTabla = document.getElementById("cuerpo-accesos");
+        cuerpoTabla.innerHTML = ""; // Limpiar tabla
+
+        accesos.forEach(acceso => {
+            const fila = document.createElement("tr");
+
+            const tdNombre = document.createElement("td");
+            tdNombre.textContent = acceso.nombre;
+            fila.appendChild(tdNombre);
+
+            const tdTipo = document.createElement("td");
+            tdTipo.textContent = acceso.tipo_usuario;
+            fila.appendChild(tdTipo);
+
+            const tdEvento = document.createElement("td");
+            tdEvento.textContent = acceso.tipo_evento;
+            fila.appendChild(tdEvento);
+
+            const tdHora = document.createElement("td");
+            tdHora.textContent = acceso.timestamp;
+            fila.appendChild(tdHora);
+
+            cuerpoTabla.appendChild(fila);
+        });
+    } catch (error) {
+        console.error("Error al cargar accesos:", error);
+    }
+}
+
+// Cargar al iniciar
+cargarAccesos();
+// Actualizar cada 10 segundos
+setInterval(cargarAccesos, 10000);
+</script>
+{% endblock %}

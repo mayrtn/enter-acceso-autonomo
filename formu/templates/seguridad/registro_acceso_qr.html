@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Acceso QR{% endblock %}
+
+{% block content %}
+    <h1>Registrar Acceso con QR</h1>
+    <form action="{{ url_for('generar_qr_acceso') }}" method="POST">
+        <label>ID del usuario:</label>
+        <input type="number" name="id_usuario" required>
+
+        <label>Tipo de usuario:</label>
+        <select name="tipo_usuario" required>
+            <option value="">-- Seleccionar --</option>
+            <option value="propietario">Propietario</option>
+            <option value="visita">Visita</option>
+            <option value="personal">Personal</option>
+        </select>
+
+        <label>Tipo de evento:</label>
+        <select name="tipo_evento" required>
+            <option value="">-- Seleccionar --</option>
+            <option value="ingreso">Ingreso</option>
+            <option value="egreso">Egreso</option>
+        </select>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+{% endblock %}

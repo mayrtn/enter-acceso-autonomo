@@ -1,0 +1,72 @@
+<!-- completar_registro.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Completar Registro</title>
+    <script>
+        function mostrarCamposConvivientes() {
+            const select = document.getElementById("convivientes_select");
+            const container = document.getElementById("datos_convivientes");
+            container.style.display = (select.value === "si") ? "block" : "none";
+        }
+
+        function agregarConviviente(tipo) {
+            const container = document.querySelector(`.${tipo}-container`);
+            const index = container.children.length;
+            let html = '';
+
+            if (tipo === 'mayores') {
+                html = `
+                    <div>
+                        <h5>Conviviente Mayor</h5>
+                        <input name="mayores_nombre[]" placeholder="Nombre" required>
+                        <input name="mayores_apellido[]" placeholder="Apellido" required>
+                        <input name="mayores_dni[]" placeholder="DNI" required>
+                        <input name="mayores_email[]" placeholder="Email" required>
+                        <input name="mayores_telefono[]" placeholder="Teléfono" required>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <div>
+                        <h5>Conviviente Menor</h5>
+                        <input name="menores_nombre[]" placeholder="Nombre" required>
+                        <input name="menores_apellido[]" placeholder="Apellido" required>
+                        <input name="menores_relacion[]" placeholder="Relación" required>
+                    </div>
+                `;
+            }
+
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+</head>
+<body>
+    <h2>Completar Registro</h2>
+    <form method="POST">
+        <label>Dirección:</label><input type="text" name="direccion" required><br>
+        <label>Teléfono:</label><input type="text" name="telefono" required><br>
+        <label>Patente:</label><input type="text" name="patente"><br>
+        <label>PIN de acceso:</label><input type="password" name="pin_acceso" required><br>
+        <label>PIN de emergencia:</label><input type="password" name="pin_seguridad" required><br>
+
+        <label>¿Vivís con alguien?</label>
+        <select id="convivientes_select" name="tiene_convivientes" onchange="mostrarCamposConvivientes()">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+        </select>
+
+        <div id="datos_convivientes" style="display: none;">
+            <h4>Convivientes Mayores de Edad</h4>
+            <div class="mayores-container"></div>
+            <button type="button" onclick="agregarConviviente('mayores')">Agregar Mayor</button>
+
+            <h4>Convivientes Menores de Edad</h4>
+            <div class="menores-container"></div>
+            <button type="button" onclick="agregarConviviente('menores')">Agregar Menor</button>
+        </div>
+
+        <button type="submit">Finalizar registro</button>
+    </form>
+</body>
+</html>

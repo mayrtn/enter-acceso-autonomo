@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Accesos QR{% endblock %}
+
+{% block content %}
+<h1>Accesos Registrados</h1>
+
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Tipo de Usuario</th>
+        <th>Evento</th>
+        <th>Fecha y Hora</th>
+    </tr>
+    {% for acceso in accesos %}
+    <tr>
+        <td>{{ acceso[4] }}</td>
+        <td>{{ acceso[1] }}</td>
+        <td>{{ acceso[2] }}</td>
+        <td>{{ acceso[3] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Usuario</title>
+    <script>
+    function mostrarCampos() {
+        var rol = document.getElementById("rol").value;
+        document.getElementById("campos_propietario").style.display = rol === "propietario" ? "block" : "none";
+        document.getElementById("campos_generales").style.display = rol !== "propietario" ? "block" : "none";
+    }
+    </script>
+</head>
+<body>
+    <h2>Crear nuevo usuario</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label>Rol:</label>
+        <select name="rol" id="rol" onchange="mostrarCampos()" required>
+            <option value="">Seleccione un rol</option>
+            <option value="propietario">Propietario</option>
+            <option value="seguridad">Seguridad</option>
+            <option value="admin">Administrador</option>
+        </select><br><br>
+
+        <div id="campos_propietario" style="display:none;">
+            <label>Nombre completo:</label><input type="text" name="nombre"><br>
+            <label>DNI:</label><input type="text" name="dni"><br>
+            <label>Unidad funcional:</label><input type="text" name="unidad_funcional"><br>
+            <label>Teléfono:</label><input type="text" name="telefono"><br>
+            <label>Email:</label><input type="email" name="email"><br>
+        </div>
+
+        <div id="campos_generales" style="display:none;">
+            <label>Nombre:</label><input type="text" name="nombre"><br>
+            <label>Apellido:</label><input type="text" name="apellido"><br>
+            <label>DNI:</label><input type="text" name="dni"><br>
+            <label>Email:</label><input type="email" name="email"><br>
+        </div>
+
+        <button type="submit">Crear usuario</button>
+    </form>
+</body>
+</html>

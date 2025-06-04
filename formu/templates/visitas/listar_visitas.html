@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Visitas{% endblock %}
+
+{% block content %}
+    <h1>Listado de Visitas Registradas</h1>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Propietario</th>
+            <th>Motivo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Color</th>
+            <th>Patente</th>
+            <th>Fecha</th>
+            <th>Hora ingreso</th>
+            <th>Hora salida</th>
+        </tr>
+
+        {% for visita in visitas %}
+        <tr>
+            <td>{{ visita[0] }}</td> <!-- nombre visita -->
+            <td>{{ visita[1] }}</td> <!-- dni -->
+            <td>{{ visita[2] }}</td> <!-- nombre propietario -->
+            <td>{{ visita[3] }}</td> <!-- motivo -->
+            <td>{{ visita[4] }}</td> <!-- marca -->
+            <td>{{ visita[5] }}</td> <!-- modelo -->
+            <td>{{ visita[6] }}</td> <!-- color -->
+            <td>{{ visita[7] }}</td> <!-- patente -->
+            <td>{{ visita[8] }}</td> <!-- fecha ingreso -->
+            <td>{{ visita[9] }}</td> <!-- hora ingreso -->
+            <td>{{ visita[10] }}</td> <!-- hora salida -->
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center; margin-top: 1em;">
+        {% if session.get("rol") == "propietario" %}
+            <a href="{{ url_for('visitas.formulario_visita') }}">Registrar nueva visita</a>
+        {% elif session.get("rol") == "admin" %}
+            <a href="#" onclick="alert('Los administradores no pueden registrar visitas.'); return false;">Registrar nueva visita</a>
+        {% endif %}
+    </div>
+{% endblock %}

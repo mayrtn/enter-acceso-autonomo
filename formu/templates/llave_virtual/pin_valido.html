@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PIN Válido</title>
+</head>
+<body>
+    <h2>¡Hola, {{ nombre }}!</h2>
+    <p>El PIN ingresado es correcto.</p>
+    <form action="/llave-virtual/generar-qr" method="POST">
+        <input type="hidden" name="id_usuario" value="{{ id_usuario }}">
+        <button type="submit">Generar QR</button>
+    </form>
+</body>
+</html>

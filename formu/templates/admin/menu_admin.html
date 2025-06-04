@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Panel Administrador{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Panel del Administrador</h2>
+    <p class="mb-4">Accedé a las funciones de gestión del barrio.</p>
+
+    <div class="list-group">
+        <a href="{{ url_for('visitas.listar_visitas') }}" class="list-group-item list-group-item-action">
+            Listar visitas
+        </a>
+        <a href="{{ url_for('qr.listar_accesos_qr') }}" class="list-group-item list-group-item-action">
+            Ver accesos QR
+        </a>
+        <a href="{{ url_for('admin.crear_usuario') }}" class="list-group-item list-group-item-action">
+           Crear Usuario
+        </a>   
+    </div>
+
+    <hr class="my-4">
+
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Cerrar sesión</a>
+</div>
+{% endblock %}

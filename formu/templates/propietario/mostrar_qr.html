@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}QR de Acceso{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-center">
+    <h2>Escaneá este QR para ingresar o egresar</h2>
+    <img src="data:image/png;base64,{{ qr_img }}" alt="QR de acceso" class="img-fluid my-4">
+
+    <form action="/escanear_qr" method="POST">
+        <input type="hidden" name="contenido_qr" value="{{ contenido_qr }}">
+        <button type="submit" class="btn btn-primary">Simular escaneo</button>
+    </form>
+</div>
+{% endblock %}

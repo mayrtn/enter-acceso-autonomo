@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Panel Propietario{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Bienvenido/a {{ session['nombre_usuario'] }}</h2>
+    <p class="mb-3">Usá el menú para gestionar accesos, vehículos y visitas.</p>
+
+    <div class="list-group">
+        <a href="{{ url_for('seguridad.listar_accesos_propietario') }}" class="list-group-item list-group-item-action">Mis accesos</a>
+        <a href="{{ url_for('propietario.nuevo_vehiculo') }}" class="list-group-item list-group-item-action">Registrar vehículo</a>
+        <a href="{{ url_for('visitas.menu_visitas') }}" class="list-group-item list-group-item-action">Invitar visita</a>
+        <a href="{{ url_for('propietario.nueva_emergencia') }}" class="list-group-item list-group-item-action text-danger">Reportar emergencia</a>
+        <a class="nav-link" href="{{ url_for('propietario.perfil') }}">Mi Perfil</a>
+    </div>
+
+    <hr class="my-4">
+
+    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Cerrar sesión</a>
+</div>
+{% endblock %}

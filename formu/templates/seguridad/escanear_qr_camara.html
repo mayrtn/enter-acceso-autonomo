@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Escanear QR con Cámara{% endblock %}
+
+{% block content %}
+<h1>Escanear QR con Cámara</h1>
+
+<div id="reader" style="width: 300px; margin: auto;"></div>
+
+<div id="mensaje" style="margin-top: 20px; text-align: center;"></div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('seguridad.menu_seguridad') }}" class="button">Volver al menú de seguridad</a>
+</div>
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script>
+    function procesarQR(contenido) {
+        fetch("/escanear_qr", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "contenido_qr=" + encodeURIComponent(contenido)
+        })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("mensaje").innerHTML = html;
+
+            // Reiniciar escaneo después de 5 segundos
+            setTimeout(() => {
+                iniciarEscaneo();
+            }, 5000);
+        })
+        .catch(err => {
+            document.getElementById("mensaje").innerText = "Error al procesar el QR.";
+            setTimeout(() => {
+                iniciarEscaneo();
+            }, 5000);
+        });
+    }
+
+    const qrScanner = new Html5Qrcode("reader");
+
+    function iniciarEscaneo() {
+        qrScanner.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            qrCodeMessage => {
+                qrScanner.stop().then(() => {
+                    procesarQR(qrCodeMessage);
+                });
+            },
+            errorMessage => {
+                // Silenciar errores de lectura
+            }
+        );
+    }
+
+    window.onload = iniciarEscaneo;
+</script>
+{% endblock %}

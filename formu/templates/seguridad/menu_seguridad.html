@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Menú de Seguridad{% endblock %}
+
+{% block content %}
+<h1>Panel de Seguridad</h1>
+
+<ul>
+    <li><a href="{{ url_for('seguridad.escanear_qr_camara') }}">📷 Escanear QR con cámara</a></li>
+    <li><a href="{{ url_for('qr.listar_accesos_qr') }}">📄 Ver accesos registrados</a></li>
+    <li><a href="{{ url_for('seguridad.registro_qr') }}">🆕 Registrar QR manualmente</a></li>
+    <li><a href="{{ url_for('auth.logout') }}">🔒 Cerrar sesión</a></li>
+</ul>
+{% endblock %}

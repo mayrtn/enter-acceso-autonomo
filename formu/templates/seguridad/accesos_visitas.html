@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Accesos de Visitas{% endblock %}
+{% block content %}
+{% set incluir_tipo = False %}
+{% include "components/tabla_accesos.html" with context %}
+
+<h2>Accesos de Visitas</h2>
+<table>
+    <tr>
+        <th>ID Usuario</th><th>Evento</th><th>Fecha y Hora</th>
+    </tr>
+    {% for acceso in accesos %}
+    <tr>
+        <td>{{ acceso[1] }}</td><td>{{ acceso[3] }}</td><td>{{ acceso[4] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

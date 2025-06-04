@@ -118,3 +118,26 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #34495e;
 }
+
+.flashes {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.flashes i {
+    margin-right: 8px;
+    color: #c82333;
+}
+
+.input-error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}

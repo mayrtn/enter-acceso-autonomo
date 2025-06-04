@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Mis Accesos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Mis Accesos</h2>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID Usuario</th>
+                <th>Evento</th>
+                <th>Fecha y Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for acceso in accesos %}
+            <tr>
+                <td>{{ acceso[1] }}</td>
+                <td>{{ acceso[3] }}</td>
+                <td>{{ acceso[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

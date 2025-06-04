@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Nuevo Usuario{% endblock %}
+
+{% block content %}
+<h1>Registrar nuevo usuario</h1>
+<form method="POST">
+    <label>Nombre: <input type="text" name="nombre" required></label>
+    <label>DNI: <input type="text" name="dni" required></label>
+    <label>Email: <input type="email" name="email" required></label>
+    <label>Teléfono: <input type="text" name="telefono" required></label>
+
+    <label>Rol:
+        <select name="rol" id="rol" required onchange="mostrarCamposPropietario()">
+            <option value="">Seleccionar...</option>
+            <option value="propietario">Propietario</option>
+            <option value="seguridad">Seguridad</option>
+            <option value="admin">Administrador</option>
+        </select>
+    </label>
+
+    <div id="campos_propietario" style="display:none;">
+        <label>Unidad funcional: <input type="text" name="unidad_funcional"></label>
+        <label>Dirección: <input type="text" name="direccion"></label>
+        <label>Marca del vehículo: <input type="text" name="marca"></label>
+        <label>Modelo: <input type="text" name="modelo"></label>
+        <label>Color: <input type="text" name="color"></label>
+        <label>Patente: <input type="text" name="patente"></label>
+    </div>
+
+    <label>Contraseña: <input type="password" name="password" required></label>
+    <label>Confirmar Contraseña: <input type="password" name="confirm_password" required></label>
+
+    <button type="submit">Registrar</button>
+</form>
+{% endblock %}

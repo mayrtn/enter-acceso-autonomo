@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<h1>Inicio de Sesión</h1>
+<form method="POST">
+    <label for="email">Usuario:</label>
+    <input type="text" name="email" required><br>
+    
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" name="contraseña" required><br>
+    
+    <button type="submit">Ingresar</button>
+    <p>¿No tenés cuenta? <a href="{{ url_for('admin.crear_usuario') }}">Registrate aquí</a></p>
+
+</form>
+{% if get_flashed_messages() %}
+    <div class="alert">{{ get_flashed_messages()[0] }}</div>
+{% endif %}
+{% endblock %}

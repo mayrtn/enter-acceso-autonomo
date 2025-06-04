@@ -2,26 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Mi Sistema{% endblock %}</title>
+    <title>{% block title %}Sistema de Acceso{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="{{ url_for('static', filename='javascript/funciones.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='javascript/funciones.js') }}"></script>
 </head>
 <body>
     <header>
-        <h1>Sistema de Acceso</h1>
+        <h1>Sistema de Control de Accesos</h1>
         <nav>
             <ul>
-                <li><a href="/"><i class="fa fa-home"></i> Inicio</a></li>
-                <li><a href="/generar_qr"><i class="fa fa-qrcode"></i> Generar QR</a></li>
-                <li><a href="/escanear_qr"><i class="fa fa-camera"></i> Escanear QR</a></li>
-                <li><a href="/listar_accesos"><i class="fa fa-list"></i> Ver Accesos</a></li>
+                {% if session.get("rol") == "admin" %}
+                    <li><a href="{{ url_for('admin.menu_admin') }}"><i class="fa fa-home"></i> Panel Admin</a></li>
+                    <li><a href="{{ url_for('propietario.nuevo_propietario') }}"><i class="fa fa-user-plus"></i> Registrar Propietario</a></li>
+                    <li><a href="{{ url_for('visitas.listar_visitas') }}"><i class="fa fa-users"></i> Visitas</a></li>
+                    <li><a href="{{ url_for('qr.listar_accesos_qr') }}"><i class="fa fa-clock-rotate-left"></i> Accesos</a></li>
+                {% elif session.get("rol") == "seguridad" %}
+                    <li><a href="{{ url_for('seguridad.menu_seguridad') }}"><i class="fa fa-shield-alt"></i> Panel Seguridad</a></li>
+                    <li><a href="{{ url_for('seguridad.registro_qr') }}"><i class="fa fa-qrcode"></i> Escanear QR</a></li>
+                    <li><a href="{{ url_for('qr.listar_accesos_qr') }}"><i class="fa fa-clock-rotate-left"></i> Accesos</a></li>
+                {% elif session.get("rol") == "propietario" %}
+                    <li><a href="{{ url_for('propietario.menu_propietario') }}"><i class="fa fa-home"></i> Inicio</a></li>
+                    <li><a href="{{ url_for('propietario.generar_qr_llave_virtual') }}"><i class="fa fa-key"></i> Llave Virtual</a></li>
+                    <li><a href="{{ url_for('propietario.nuevo_vehiculo') }}"><i class="fa fa-car"></i> Vehículos</a></li>
+                    <li><a href="{{ url_for('propietario.nueva_emergencia') }}"><i class="fa fa-ambulance"></i> Emergencias</a></li>
+                    <li><a href="{{ url_for('visitas.formulario_visita') }}"><i class="fa fa-user-plus"></i> Invitar Visita</a></li>
+                {% endif %}
+                {% if session.get("rol") %}
+                    <li><a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
-
     <main>
-        {% block content %}{% endblock %}
+    {% block content %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
     </main>
 </body>
 </html>

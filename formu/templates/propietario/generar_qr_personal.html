@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Generar QR para Personal Externo{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Generar QR para Personal Externo</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="pin_ingreso" class="form-label">PIN de acceso</label>
+            <input type="password" class="form-control" name="pin_ingreso" required>
+        </div>
+        <div class="mb-3">
+            <label for="vencimiento" class="form-label">Fecha y hora de vencimiento</label>
+            <input type="datetime-local" class="form-control" name="vencimiento" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Generar QR</button>
+    </form>
+</div>
+{% endblock %}
+
+

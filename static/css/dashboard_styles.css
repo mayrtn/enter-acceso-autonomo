@@ -65,26 +65,28 @@ header {
 /* Estilos: Dropdown del Usuario */
 /* ----------------------------- */
 
+
 #dropdown {
   display: none;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 100%;
+  margin-top: 0.5rem;
   background: #1A1D29; /* Mismo color que el botón */
   list-style: none;
   margin: 0;
-  padding: 1rem 3rem;
-  padding-top: 4rem;
+  padding: 1rem 3rem 2rem;
   border: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  width: 100%; /* Igual que el botón */
+  min-width: 250px;
+  max-width: 300px;
+  width: max-content;
   box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 10;
-  position: absolute;
-  right: 0;
 }
 
 #dropdown.show {
@@ -101,8 +103,8 @@ header {
   text-decoration: none;
   display: block;
   width: 100%;
-  font-weight: bold;       /* Negrita */
-  white-space: nowrap;     /* Una sola línea */
+  font-weight: bold;           /* Negrita */
+  white-space: nowrap;         /* Una sola línea */
   text-align: right;
 }
 
@@ -178,3 +180,95 @@ Agregar imagen de fondo para cuando el main esta inactivo
 }
 
 */
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .logo-letras {
+    height: 36px;
+    margin: 0;
+  }
+
+  .user-menu {
+    position: relative;
+    width: auto;
+  }
+
+  #user-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    min-width: unset;
+    max-width: 180px;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  #dropdown {
+    width: 100%;
+    max-width: 180px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 1rem 1rem;
+    background: #1A1D29;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    display: none;
+  }
+
+  #dropdown.show {
+    display: block;
+  }
+
+  .contenedor-main {
+    flex-direction: column;
+  }
+
+  .side-navbar {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .side-navbar a {
+    font-size: 1rem;
+  }
+
+  .main-dinamico {
+    padding: 1rem;
+  }
+
+  .user-menu {
+    display: inline-block;
+    width: auto;
+    max-width: 180px;
+  }
+
+  #user-button {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  #dropdown {
+    width: 100%;
+    max-width: 180px;
+    min-width: unset;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+    #dropdown li a {
+    white-space: normal;    /* ❗ Permite saltos de línea */
+    word-wrap: break-word;  /* ❗ Rompe palabras largas si es necesario */
+    font-size: 0.85rem;     /* ❗ Opcional: letra más chica para mejor ajuste */
+    line-height: 1.2;       /* ❗ Espaciado más compacto entre líneas */
+  }
+}

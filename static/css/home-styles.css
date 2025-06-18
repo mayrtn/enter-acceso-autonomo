@@ -4,51 +4,53 @@
   padding: 0;
 }
 
-body, html {
+html, body {
   height: 100%;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
+/* ==== CONTENEDOR PRINCIPAL ==== */
 .container {
   display: flex;
-  height: 100vh;
+  flex-direction: row;
+  min-height: 100vh; /* Altura mínima total de la pantalla */
+  width: 100%;
 }
 
-/* Panel izquierdo →  logo + copy */
+/* === PANEL IZQUIERDO → logo + texto === */
 .left-panel {
-  width: 66.666%; /* 4/6 de la pantalla */
+  flex: 2; /* Ocupa 2/3 del ancho */
   background: linear-gradient(270deg, #FFFFFF 0.95%, #B1B2B5 98.3%);
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 40px;
-  padding-left: 100px; /* espacio interno (padding) en borde izquierdo */
 }
 
 .logo-section {
   display: flex;
   flex-direction: column; /* apila verticalmente */
-  justify-content: center;
-  align-items: flex-start; /* alinea a la izquierda */
-  text-align: left;
-  padding: 40px;
-  max-width: 800px; /* ancho máximo opcional */
-}
-
-.texto-copy {
-  font-size: 25px;
-  line-height: 1.5;     /* Para que el texto sea más legible */
-  text-align: justify;  /* Para justificar el texto */
+  align-items: flex-start;
+  max-width: 800px;
 }
 
 .logo {
-
-  width: 400px;
+  width: 100%;
+  max-width: 300px; /* tamaño máximo del logo */
   height: auto;
   margin-bottom: 24px;
 }
 
-/* Panel derecho →  formulario */
+.texto-copy {
+  font-size: 22px;
+  line-height: 1.5;     /* Para que el texto sea más legible */
+  text-align: justify;  /* Para justificar el texto */
+}
+
+/* === PANEL DERECHO → formulario === */
 .right-panel {
-  width: 33.333%; /* 2/6  de la pantalla*/
+  flex: 1; /* Ocupa 1/3 del ancho */
   background-color: #1A1D29;
   display: flex;
   justify-content: center;
@@ -67,35 +69,80 @@ body, html {
 
 .login-form h2 {
   font-family: 'Questrial', sans-serif;
-  font-size: 30px;
-  margin-bottom: 16px;
+  font-size: 28px;
   text-align: center;
+  margin-bottom: 12px;
 }
 
 .login-form label {
+  font-size: 16px;
   font-weight: 600;
-  font-size: 18px;
 }
 
 .login-form input {
   padding: 10px;
   border: none;
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
 .login-form button {
-  margin-top: 12px;
+  margin-top: 10px;
   padding: 10px;
   background-color: #C4C4C4;
   color: #000;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .login-form button:hover {
   background-color: #aaaaaa;
 }
+
+/* ==== MEDIA QUERY para celulares y pantallas pequeñas ==== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Apila verticalmente */
+    min-height: 100vh;
+  }
+
+  .left-panel, .right-panel {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .logo-section {
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+
+  .texto-copy {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 16px;
+  }
+}
+
+/* === PREVENCIÓN DE SCROLL VERTICAL INNECESARIO === */
+body {
+  overflow-y: auto;
+}
+
+
